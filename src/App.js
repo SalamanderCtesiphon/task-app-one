@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import uniqid from 'uniqid';
 import AddTask from "./components/AddTask";
 import Header from "./components/Header";
+import Overview from "./components/Overview";
 
 class App extends Component {
   state = {
@@ -13,11 +14,16 @@ class App extends Component {
     ]
   }
 
+  delTask = (id) => {
+    this.setState({ tasks: [...this.state.tasks.filter(task => task.id !=id)]})
+  }
+
   addTask = (title) => {
     const newTask = {
       id: uniqid(),
       title
     }
+    this.setState({ tasks: [...this.state.tasks, newTask]})
   }  
 
   render() {
@@ -26,6 +32,7 @@ class App extends Component {
        <div className="container">
         <Header />
         <AddTask />
+        <Overview tasks={this.state.tasks} delTask={this.delTask}/>
        </div>
       </div>
     );
