@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import uniqid from 'uniqid';
 import AddTask from "./components/AddTask";
+import Header from "./components/Header";
 
 class App extends Component {
   state = {
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       <div className="App">
        <div className="container">
+        <Header />
         <AddTask />
        </div>
       </div>
