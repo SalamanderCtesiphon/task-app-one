@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import TaskItem from "./TaskItem";
+import React from "react";
 
-class Overview extends Component {
-    render() {
-        return this.props.tasks.map((task) => (
-            <TaskItem key={task.id} task={task}
-            delTask={this.props.delTask} />
-        ))
-    }
-    
+const Overview = (props) => {
+  const { tasks } = props;
+
+  return (
+    <ul>
+      {tasks.map((task) => {
+        return <li key={task.id}>{task.text}</li>;
+      })}
+    </ul>
+  );
 };
-
-
 
 export default Overview;
