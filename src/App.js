@@ -14,6 +14,8 @@ class App extends Component {
       },
       tasks: [],
     };
+
+    this.delTask = this.delTask.bind(this);
   }
 
   handleChange = (e) => {
@@ -56,7 +58,7 @@ class App extends Component {
           />
           <button type="submit">Add Task</button>
         </form>
-        <Overview tasks={tasks} delTask={this.props.delTask}/>
+        <Overview tasks={tasks} delTask={this.state.delTask}/>
       </div>
     );
   }
