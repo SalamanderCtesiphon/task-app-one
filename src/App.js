@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Overview from "./components/Overview";
+import Footer from "./Footer";
 import './App.css'
 
 const App = () => {
@@ -44,25 +45,28 @@ const App = () => {
 
     return (
       <div className="App">
-        <Header />
-        <form onSubmit={onSubmitTask}>
-          <label htmlFor="taskInput">Enter task:     </label>
-          <input
-            onChange={(e) => setText(e.target.value)}
-            value={text}
-            type="text"
-            id="taskInput"
-          /><span>    </span>
-          <button type="submit">Add Task</button>
-        </form>
-        <Overview 
-          tasks={tasks} 
-          delTask={delTask}
-          setEditingText={setEditingText}
-          submitEdits={submitEdits}
-          todoEditing={todoEditing}
-          settodoEditing={settodoEditing}
-        />
+        <div className="page">
+          <Header />
+          <form onSubmit={onSubmitTask}>
+            <label htmlFor="taskInput">Enter task:     </label>
+            <input
+              onChange={(e) => setText(e.target.value)}
+              value={text}
+              type="text"
+              id="taskInput"
+            /><span>    </span>
+            <button className="submitBtn"type="submit">Add Task</button>
+          </form>
+          <Overview 
+            tasks={tasks} 
+            delTask={delTask}
+            setEditingText={setEditingText}
+            submitEdits={submitEdits}
+            todoEditing={todoEditing}
+            settodoEditing={settodoEditing}
+          />
+        </div>
+        <Footer />
       </div>
     );
 }
