@@ -4,10 +4,17 @@ import "../App.css";
 const Overview = ({ tasks, delTask }) => {
 
   return (
-    <ul>
+    <ul className="container">
       {tasks.map((task) => {
-        return <li key={task.id}>{task.text}{''}
-        <button onClick={() => delTask(task.id)}>Delete</button></li>;
+        return <li key={task.id}>
+          {tasks.indexOf(task) + 1 }.{' '}
+          {task.text}
+          {''}
+          <button 
+            onClick={() => delTask(task.id)}>
+              Delete
+          </button>
+        </li>;
       })}
     </ul>
   );
