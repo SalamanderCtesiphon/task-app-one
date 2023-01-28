@@ -1,22 +1,46 @@
 import React from "react";
 import "../App.css";
 
-const Overview = ({ tasks, delTask }) => {
+const Overview = ({ tasks, delTask, submitEdits, todoEditing, settodoEditing, setEditingText }) => {
 
   return (
-    <ul className="container">
+    <div>
+      { tasks.length === 0 &&
+        <li>No more tasks to complete</li>
+      }
       {tasks.map((task) => {
-        return <li key={task.id}>
-          {tasks.indexOf(task) + 1 }.{' '}
-          {task.text}
-          {''}
-          <button 
-            onClick={() => delTask(task.id)}>
-              Delete
-          </button>
-        </li>;
+        return (
+          <div>
+            <li key={task.id}>
+              {tasks.indexOf(task) + 1 }.{' '}
+              {task.id === todoEditing ? (
+                <input
+                  type='text'
+                  onChange={(e) => setEditingText(e.target.value)}
+                />
+              ) : (
+                <div>{task.text}</div>
+              )}  
+              <div className="btnBox">
+                {task.id === todoEditing ? (
+                  <button onClick={() => submitEdits(task.id)}>Resubmit</button>
+                ) : (
+                  <button onClick={() => settodoEditing(task.id)}>Edit</button>
+                )}
+                {' '}
+                <button 
+                  onClick={() => delTask(task.id)}>
+                    Delete
+                </button>
+              </div>
+            </li>
+          </div>
+        )
       })}
-    </ul>
+      <ul className="container">
+        
+      </ul>
+    </div>
   );
 };
 
