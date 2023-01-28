@@ -25,7 +25,7 @@ const App = () => {
   }
 
   const delTask = (id) => {
-    this.setState({ tasks: [...this.state.tasks.filter(task => task.id !==id)]})
+    setTask(tasks.filter((task) => task.id !==id))
   }
 
     return (
