@@ -1,67 +1,52 @@
-import React, { Component } from "react";
-import uniqid from 'uniqid';
+import { useState } from "react";
 import Header from "./components/Header";
 import Overview from "./components/Overview";
 
-class App extends Component {
-  constructor() {
-    super();
+const App = () => {
+  const [text, setText] = useState('')
+  const [tasks, setTask] = useState([])
 
-    this.state = {
-      task: {
-        text: '', 
-        id: uniqid()
-      },
-      tasks: [],
-    };
+  const onSubmitTask = (e) => {
+    e.preventDefault();
+    
+    if(!text) {
+      alert('Please add a task')
+      return
+    }
+    addTask({ text })
 
-    this.delTask = this.delTask.bind(this);
+    setText('')
+  };
+
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = {id, ...task}
+    setTask([...tasks, newTask])
   }
 
-  handleChange = (e) => {
-    this.setState({
-      task: {
-        text: e.target.value,
-        id: this.state.task.id,
-      },
-    });
-  };
-
-  onSubmitTask = (e) => {
-    e.preventDefault();
-    this.setState({
-      tasks: this.state.tasks.concat(this.state.task),
-      task: {
-        text: '', 
-        id: uniqid()
-      },
-    });
-  };
-
-  delTask = (id) => {
+  const delTask = (id) => {
     this.setState({ tasks: [...this.state.tasks.filter(task => task.id !==id)]})
   }
-
-  render() {
-    const { task, tasks } = this.state;
 
     return (
       <div>
         <Header />
-        <form onSubmit={this.onSubmitTask}>
+        <form onSubmit={onSubmitTask}>
           <label htmlFor="taskInput">Enter task</label>
           <input
-            onChange={this.handleChange}
-            value={task.text}
+            onChange={(e) => setText(e.target.value)}
+            value={text}
             type="text"
             id="taskInput"
           />
           <button type="submit">Add Task</button>
         </form>
-        <Overview tasks={tasks} delTask={this.state.delTask}/>
+        <Overview 
+          tasks={tasks} 
+          delTask={delTask}
+        />
       </div>
     );
-  }
 }
 
 export default App;
