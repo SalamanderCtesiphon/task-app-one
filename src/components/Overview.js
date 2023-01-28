@@ -11,14 +11,17 @@ const Overview = ({ tasks, delTask, submitEdits, todoEditing, settodoEditing, se
         }
         {tasks.map((task) => (
           <li key={task.id}>
-            {tasks.indexOf(task) + 1 }.{' '}
+            <div className="numbers">{tasks.indexOf(task) + 1 }. {""}</div>
             {task.id === todoEditing ? (
               <input
                 type='text'
                 onChange={(e) => setEditingText(e.target.value)}
               />
             ) : (
-              <div>{task.text}</div>
+              <div>
+                <div>{"    "}</div>
+                <div>{task.text}</div>
+              </div>
             )}  
             <div className="btnBox">
               {task.id === todoEditing ? (

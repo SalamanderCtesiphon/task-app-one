@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Overview from "./components/Overview";
+import './App.css'
 
 const App = () => {
   const [text, setText] = useState('')
@@ -42,7 +43,7 @@ const App = () => {
   }
 
     return (
-      <div>
+      <div className="App">
         <Header />
         <form onSubmit={onSubmitTask}>
           <label htmlFor="taskInput">Enter task:     </label>
